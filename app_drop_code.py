@@ -1,3 +1,4 @@
+import time
 import telebot
 from telebot import types
 
@@ -189,4 +190,10 @@ def universal(message):
         bot.send_message(chat_id=7495969992, text=f"💬️Сообщение от @{message.from_user.username} (id: {message.from_user.id}):\n{message.text}")
 
 
-bot.polling()
+
+while True:
+    try:
+        bot.polling(none_stop=True, interval=0, timeout=30)
+    except Exception as e:
+        print(f"Ошибка в polling: {e}")
+        time.sleep(3)
